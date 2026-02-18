@@ -15,7 +15,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={`${inter.variable} ${notoSansJP.variable} font-sans antialiased bg-background`}
       >
-        {children}
+        <header>Header</header>
+        <main>{children}</main>
+        <footer>Footer</footer>
       </body>
     </html>
   );

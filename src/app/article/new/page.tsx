@@ -1,8 +1,20 @@
+'use client';
+
+import { useActionState } from 'react';
+import { createArticle } from '@/util/createArticle';
+
 export default function CreateArticlePage() {
+  const initialState: { error: string | null } = { error: '' };
+
+  const [state, formAction, isPending] = useActionState(createArticle, initialState);
+
   return (
     <div className="min-h-screen py-8 px-4 md:px-12">
       <h2 className="text-xl font-bold md">記事新規作成</h2>
-      <form action="" className="space-y-4 p-6 rounded shadow-lg">
+      <form action={formAction} className="space-y-4 p-6 rounded shadow-lg">
+        <div className="h-4">
+          {state.error && <p className="text-red-500 text-sm font-medium">{state.error}</p>}
+        </div>
         <div>
           <label htmlFor="url" className="block text-sm text-gray-700">
             ID
@@ -38,9 +50,10 @@ export default function CreateArticlePage() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="bg-blue-500 text-white text-sm py-2 px-4 font-medium rounded-md shadow hover:opacity-75"
+            disabled={isPending}
+            className={`bg-blue-500 text-white text-sm py-2 px-4 font-medium rounded-md shadow ${isPending ? 'disabled:opacity-50 disabled:cursor-not-allowed' : 'hover:opacity-75'}`}
           >
-            Submit
+            {isPending ? 'Sending...' : 'Submit'}
           </button>
         </div>
       </form>

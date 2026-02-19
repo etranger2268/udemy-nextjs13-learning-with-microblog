@@ -1,43 +1,60 @@
 'use server';
 
-import { CREATE_ARTICLE_ERROR, URL_NOT_FOUND } from '@/constants/constants';
-import { type Article, articleFormSchema } from '@/schemas/article';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import { CREATE_ARTICLE_ERROR, SCHEMAS_ERROR, URL_NOT_FOUND } from '@/constants/constants';
+import { articleFormSchema } from '@/schemas/article';
 
-export const createArticle = async (formData: FormData): Promise<Article> => {
+interface State {
+  error: string | null;
+}
+
+export const createArticle = async (_prevState: State, formData: FormData): Promise<State> => {
   const apiURL = process.env.API_URL;
   if (!apiURL) {
-    throw new Error(URL_NOT_FOUND);
+    return { error: URL_NOT_FOUND };
   }
 
-  const result = articleFormSchema.safeParse(formData);
-  if (!result.success) {
-    console.error(result.error);
-  }
-
-  const data = result.data;
-
-  const id = data?.id;
-  const title = data?.title;
-  const content = data?.content;
-
-  const currentDataTime = new Date().toISOString();
-
-  const res = await fetch(`${apiURL}/articles`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      id,
-      title,
-      content,
-      createdAt: currentDataTime,
-    }),
+  const result = articleFormSchema.safeParse({
+    id: formData.get('id'),
+    title: formData.get('title'),
+    content: formData.get('content'),
   });
 
-  if (!res.ok) {
-    throw new Error(CREATE_ARTICLE_ERROR);
+  if (!result.success) {
+    return { error: SCHEMAS_ERROR };
   }
 
-  return res.json();
+  const { id, title, content } = result.data;
+  const currentDataTime = new Date();
+  const createdAt = new Intl.DateTimeFormat('ja-JP', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(currentDataTime);
+
+  try {
+    const res = await fetch(`${apiURL}/articles`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id,
+        title,
+        content,
+        createdAt,
+      }),
+    });
+
+    if (!res.ok) {
+      return { error: CREATE_ARTICLE_ERROR };
+    }
+
+    revalidatePath('/');
+  } catch (_err) {
+    return { error: CREATE_ARTICLE_ERROR };
+  }
+
+  redirect('/');
 };

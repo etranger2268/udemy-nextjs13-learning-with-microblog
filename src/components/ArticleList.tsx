@@ -2,12 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { Fragment } from 'react/jsx-runtime';
+import Loading from '@/components/Loading';
 import { getAllArticles } from '@/util/getAllArticles';
 import { getUnsplashPhoto } from '@/util/getUnsplashPhoto';
 
 const ArticleList = () => {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<Loading />}>
       <ArticleListContent />
     </Suspense>
   );

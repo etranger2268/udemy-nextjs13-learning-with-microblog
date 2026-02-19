@@ -2,6 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "json-server": "json-server --watch src/test-data/articles.json --port 3001",
+    "dev:all": "concurrently \"npm run dev\" \"npm run json-server\"",
     "build": "next build",
     "start": "next start",
     "preview": "next build && next start",
@@ -10,8 +12,7 @@
     "fix": "biome check --write .",
     "format": "biome format --write .",
     "type-check": "tsc --noEmit",
-    "prepare": "lefthook install",
-    "json-server": "json-server --watch src/test-data/posts.json --port 3001"
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "json-server": "^1.0.0-beta.6",
@@ -25,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
     "lefthook": "^2.1.1",
     "tailwindcss": "^4",
     "typescript": "^5"

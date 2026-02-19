@@ -1,7 +1,7 @@
 'use cache';
 
 import { API_ERROR, URL_NOT_FOUND } from '@/constants/constants';
-import type { UnsplashPhoto } from '@/type/unsplashPhoto';
+import type { UnsplashPhoto } from '@/types/unsplashPhoto';
 
 export const getUnsplashPhoto = async (): Promise<UnsplashPhoto> => {
   const apiKey = process.env.UNSPLASH_ACCESS_KEY;

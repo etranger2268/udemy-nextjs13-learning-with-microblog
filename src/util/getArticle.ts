@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { API_ERROR, URL_NOT_FOUND } from '@/constants/constants';
-import type { Article } from '@/type/article';
+import type { Article } from '@/schemas/article';
 
 export const getArticle = async (id: string): Promise<Article> => {
   const apiURL = process.env.API_URL;

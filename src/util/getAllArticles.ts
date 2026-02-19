@@ -1,5 +1,5 @@
 import { API_ERROR, URL_NOT_FOUND } from '@/constants/constants';
-import type { Article } from '@/type/article';
+import type { Article } from '@/schemas/article';
 
 export const getAllArticles = async (): Promise<Article[]> => {
   await new Promise((resolve) => setTimeout(resolve, 2000));

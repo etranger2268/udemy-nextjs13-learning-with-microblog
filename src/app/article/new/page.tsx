@@ -5,11 +5,12 @@ export default function CreateArticlePage() {
       <form action="" className="space-y-4 p-6 rounded shadow-lg">
         <div>
           <label htmlFor="url" className="block text-sm text-gray-700">
-            URL
+            ID
           </label>
           <input
             type="text"
-            id="url"
+            id="id"
+            name="id"
             className="py-1 px-3 border w-full rounded-md text-sm font-medium text-gray-900 focus:outline-none focus:ring focus:ring-blue-500"
           />
         </div>
@@ -20,6 +21,7 @@ export default function CreateArticlePage() {
           <input
             type="text"
             id="title"
+            name="title"
             className="py-1 px-3 border w-full rounded-md text-sm font-medium text-gray-900 focus:outline-none focus:ring focus:ring-blue-500"
           />
         </div>
@@ -29,6 +31,7 @@ export default function CreateArticlePage() {
           </label>
           <textarea
             id="content"
+            name="content"
             className="py-1 px-3 border w-full rounded-md text-sm font-medium text-gray-900 focus:outline-none focus:ring focus:ring-blue-500"
           />
         </div>

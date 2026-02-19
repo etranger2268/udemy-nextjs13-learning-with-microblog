@@ -10,7 +10,7 @@ const Header = () => {
       </div>
       <div>
         <nav className="text-sm font-medium">
-          <Link href="/articles/new" className="hover:underline hover:text-sky-500">
+          <Link href="/article/new" className="hover:underline hover:text-sky-500">
             New Post
           </Link>
         </nav>

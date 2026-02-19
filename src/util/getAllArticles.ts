@@ -1,7 +1,8 @@
 import type { Article } from '@/type/article';
 
 export const getAllArticles = async (): Promise<Article[]> => {
-  const apiURL = process.env.NEXT_PUBLIC_API_URL;
+  const apiURL = process.env.API_URL;
+  console.log(apiURL);
   if (!apiURL) {
     throw new Error('API URL is missing');
   }

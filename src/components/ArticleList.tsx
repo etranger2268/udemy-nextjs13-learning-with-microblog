@@ -1,73 +1,55 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Fragment } from 'react/jsx-runtime';
+import { getAllArticles } from '@/util/getAllArticles';
 import { getUnsplashPhoto } from '@/util/getUnsplashPhoto';
 
 const ArticleList = () => {
-  return (
-    <div>
-      <article className="shadow my-4 flex flex-col">
-        <Link href="#" className="hover:opacity-75">
-          <ArticleListContent />
-        </Link>
-        <div className="bg-white">
-          <div className="gap-3 flex flex-col justify-start p-6">
-            <Link href="#" className="text-gray-900 font-bold">
-              Technology
-            </Link>
-            <Link href="#" className="text-gray-900 text-3xl font-bold hover:text-gray-700">
-              Next.jsの勉強中
-            </Link>
-            <p className="text-sm">Published on 2026/02/19</p>
-            <Link href="#" className="text-gray-900 text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque orci erat, fermentum
-              et ante ac, tempus finibus elit. Fusce volutpat iaculis mauris, nec varius felis
-              elementum ac. In quis felis.
-            </Link>
-            <Link href="#" className="text-gray-900 hover:text-sky-500">
-              続きを読む
-            </Link>
-          </div>
-        </div>
-      </article>
-      <article className="shadow my-4 flex flex-col">
-        <Link href="#" className="hover:opacity-75">
-          <ArticleListContent />
-        </Link>
-        <div className="bg-white">
-          <div className="gap-3 flex flex-col justify-start p-6">
-            <Link href="#" className="text-gray-900 font-bold">
-              Technology
-            </Link>
-            <Link href="#" className="text-gray-900 text-3xl font-bold hover:text-gray-700">
-              Next.jsの勉強中
-            </Link>
-            <p className="text-sm">Published on 2026/02/19</p>
-            <Link href="#" className="text-gray-900 text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque orci erat, fermentum
-              et ante ac, tempus finibus elit. Fusce volutpat iaculis mauris, nec varius felis
-              elementum ac. In quis felis.
-            </Link>
-            <Link href="#" className="text-gray-900 hover:text-sky-500">
-              続きを読む
-            </Link>
-          </div>
-        </div>
-      </article>
-    </div>
-  );
+  return <ArticleListContent />;
 };
 
 async function ArticleListContent() {
-  const photo = await getUnsplashPhoto();
+  const [photo, articles] = await Promise.all([getUnsplashPhoto(), getAllArticles()]);
+
+  if (!articles) {
+    return <p>Articles not found</p>;
+  }
 
   return (
-    <Image
-      src={photo.urls.regular}
-      alt={photo.description}
-      className="w-full"
-      width={540}
-      height={960}
-    />
+    <div>
+      <article className="shadow my-4 flex flex-col">
+        {articles.map((article) => (
+          <Fragment key={article.id}>
+            <Link href="#" className="hover:opacity-75">
+              <Image
+                src={photo.urls.regular}
+                alt={photo.description}
+                className="w-full"
+                width={540}
+                height={960}
+              />
+            </Link>
+            <div className="bg-white">
+              <div className="gap-3 flex flex-col justify-start p-6">
+                <Link href="#" className="text-gray-900 font-bold">
+                  Technology
+                </Link>
+                <Link href="#" className="text-gray-900 text-3xl font-bold hover:text-gray-700">
+                  {article.title}
+                </Link>
+                <p className="text-sm">Published on {article.createdAt}</p>
+                <Link href="#" className="text-gray-900 text-sm">
+                  {article.content}
+                </Link>
+                <Link href="#" className="text-gray-900 hover:text-sky-500">
+                  続きを読む
+                </Link>
+              </div>
+            </div>
+          </Fragment>
+        ))}
+      </article>
+    </div>
   );
 }
 

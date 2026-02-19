@@ -1,13 +1,6 @@
 'use cache';
 
-interface UnsplashPhoto {
-  id: string;
-  urls: {
-    regular: string;
-    small: string;
-  };
-  description: string;
-}
+import type { UnsplashPhoto } from '@/type/unsplashPhoto';
 
 export const getUnsplashPhoto = async (): Promise<UnsplashPhoto> => {
   const apiKey = process.env.UNSPLASH_ACCESS_KEY;
@@ -21,6 +14,5 @@ export const getUnsplashPhoto = async (): Promise<UnsplashPhoto> => {
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
-  const data = await res.json();
-  return data;
+  return res.json();
 };

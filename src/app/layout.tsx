@@ -17,12 +17,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={`${inter.variable} ${notoSansJP.variable} font-sans antialiased container mx-auto`}
       >
-        <div>
-          <Header />
-        </div>
-        <main>{children}</main>
-        <div>
-          <Footer />
+        <div className="flex flex-col min-h-screen">
+          <div>
+            <Header />
+          </div>
+          <main className="grow">{children}</main>
+          <div>
+            <Footer />
+          </div>
         </div>
       </body>
     </html>

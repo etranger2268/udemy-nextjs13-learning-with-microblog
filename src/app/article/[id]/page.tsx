@@ -2,7 +2,9 @@ import Image from 'next/image';
 import { Suspense } from 'react';
 import ArticleDeleteButton from '@/components/ArticleDeleteButton';
 import Loading from '@/components/Loading';
-import { getArticle } from '@/util/getArticle';
+import { URL_NOT_FOUND } from '@/constants/constants';
+import type { Post } from '@/types/post';
+// import { getArticle } from '@/util/getArticle';
 import { getUnsplashPhoto } from '@/util/getUnsplashPhoto';
 
 interface ArticleDetailPageProps {
@@ -19,7 +21,24 @@ export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
 
 async function ArticleDetailPageContent({ params }: ArticleDetailPageProps) {
   const { id } = await params;
-  const article = await getArticle(id);
+
+  // json-server
+  // const article = await getArticle(id);
+
+  // supabase
+  const apiURL = process.env.SUPABASE_API_URL;
+  if (!apiURL) {
+    throw new Error(URL_NOT_FOUND);
+  }
+
+  const res = await fetch(`${apiURL}/api/posts/${id}`);
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || '予期せぬエラーが発生しました');
+  }
+
+  const article = (await res.json()) as Post;
+
   const photo = await getUnsplashPhoto();
   return (
     <div className="flex flex-col justify-center items-center max-w-3xl mx-auto space-y-4 my-8">

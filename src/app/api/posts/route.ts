@@ -11,18 +11,3 @@ export async function GET() {
   }
   return NextResponse.json<GetPostsResponse>(posts ?? []);
 }
-
-export async function POST(request: Request) {
-  const { id, title, content, createdAt } = await request.json();
-
-  const { data, error } = await supabase
-    .from('posts')
-    .insert([{ id, title, content, createdAt }])
-    .select();
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  return NextResponse.json(data);
-}

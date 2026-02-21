@@ -38,7 +38,7 @@ export const createArticle = async (
   }).format(currentDataTime);
 
   try {
-    const res = await fetch(`${apiURL}/posts`, {
+    const res = await fetch(`${apiURL}/articles`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

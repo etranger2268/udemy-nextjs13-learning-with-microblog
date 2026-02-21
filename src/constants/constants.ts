@@ -5,3 +5,5 @@ export const API_ERROR = 'Failed to fetch data';
 export const SCHEMAS_ERROR = 'Invalid input';
 
 export const CREATE_ARTICLE_ERROR = 'Failed to create article';
+
+export const DELETE_ARTICLE_ERROR = 'Failed to delete article';

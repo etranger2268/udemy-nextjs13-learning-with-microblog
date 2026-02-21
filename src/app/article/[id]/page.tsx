@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Suspense } from 'react';
+import ArticleDeleteButton from '@/components/ArticleDeleteButton';
 import Loading from '@/components/Loading';
 import { getArticle } from '@/util/getArticle';
 import { getUnsplashPhoto } from '@/util/getUnsplashPhoto';
@@ -32,6 +33,9 @@ async function ArticleDetailPageContent({ params }: ArticleDetailPageProps) {
       <h2 className="text-xl text-gray-900 font-bold">{article.title}</h2>
       <div className="w-full">
         <p>{article.content}</p>
+      </div>
+      <div>
+        <ArticleDeleteButton _id={id} />
       </div>
     </div>
   );

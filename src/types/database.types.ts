@@ -8,7 +8,27 @@ export type Database = {
   };
   public: {
     Tables: {
-      [_ in never]: never;
+      posts: {
+        Row: {
+          content: string | null;
+          createdAt: string;
+          id: string;
+          title: string;
+        };
+        Insert: {
+          content?: string | null;
+          createdAt?: string;
+          id: string;
+          title: string;
+        };
+        Update: {
+          content?: string | null;
+          createdAt?: string;
+          id?: string;
+          title?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

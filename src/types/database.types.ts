@@ -10,19 +10,19 @@ export type Database = {
     Tables: {
       posts: {
         Row: {
-          content: string | null;
+          content: string;
           createdAt: string;
           id: string;
           title: string;
         };
         Insert: {
-          content?: string | null;
+          content: string;
           createdAt?: string;
           id: string;
           title: string;
         };
         Update: {
-          content?: string | null;
+          content?: string;
           createdAt?: string;
           id?: string;
           title?: string;

@@ -19,17 +19,17 @@ export const createArticle = async (
     return { error: URL_NOT_FOUND };
   }
 
-  const result = articleFormSchema.safeParse({
+  const validation = articleFormSchema.safeParse({
     id: formData.get('id'),
     title: formData.get('title'),
     content: formData.get('content'),
   });
 
-  if (!result.success) {
+  if (!validation.success) {
     return { error: SCHEMAS_ERROR };
   }
 
-  const { title, content } = result.data;
+  const { title, content } = validation.data;
   const currentDataTime = new Date();
   const createdAt = new Intl.DateTimeFormat('ja-JP', {
     year: 'numeric',

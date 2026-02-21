@@ -14,7 +14,9 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
       <div className="gap-3 flex flex-col justify-start p-6">
         <span className="text-gray-900 font-bold">Technology</span>
         <h3 className="text-gray-900 text-3xl font-bold hover:text-gray-700">{article.title}</h3>
-        <small className="text-sm">Published on {article.createdAt}</small>
+        <small className="text-sm">
+          Published on {new Date(article.createdAt).toLocaleString()}
+        </small>
         <p className="text-gray-900 text-sm">
           {article.content.length > 70 ? `${article.content.slice(0, 70)}...` : article.content}
         </p>

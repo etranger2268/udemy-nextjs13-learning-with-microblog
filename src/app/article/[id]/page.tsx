@@ -26,7 +26,7 @@ async function ArticleDetailPageContent({ params }: ArticleDetailPageProps) {
   // const article = await getArticle(id);
 
   // supabase
-  const apiURL = process.env.SUPABASE_API_URL;
+  const apiURL = process.env.NEXT_PUBLIC_SUPABASE_API_URL;
   if (!apiURL) {
     throw new Error(URL_NOT_FOUND);
   }

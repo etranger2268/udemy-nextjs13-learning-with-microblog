@@ -8,6 +8,7 @@ export const articleSchema = z.object({
 });
 
 export const articleFormSchema = articleSchema.omit({
+  id: true,
   createdAt: true,
 });
 

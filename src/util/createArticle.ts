@@ -9,7 +9,11 @@ interface State {
   error: string | null;
 }
 
-export const createArticle = async (_prevState: State, formData: FormData): Promise<State> => {
+export const createArticle = async (
+  id: string,
+  _prevState: State,
+  formData: FormData,
+): Promise<State> => {
   const apiURL = process.env.API_URL;
   if (!apiURL) {
     return { error: URL_NOT_FOUND };
@@ -25,7 +29,7 @@ export const createArticle = async (_prevState: State, formData: FormData): Prom
     return { error: SCHEMAS_ERROR };
   }
 
-  const { id, title, content } = result.data;
+  const { title, content } = result.data;
   const currentDataTime = new Date();
   const createdAt = new Intl.DateTimeFormat('ja-JP', {
     year: 'numeric',

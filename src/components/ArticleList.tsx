@@ -20,10 +20,12 @@ async function ArticleListContent() {
 
   return (
     <div>
-      <article className="shadow my-4 flex flex-col">
-        {articles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
-        ))}
+      <article className="my-4 flex flex-col">
+        <div className="space-y-4">
+          {articles.map((article) => (
+            <ArticleCard key={article.id} article={article} />
+          ))}
+        </div>
       </article>
     </div>
   );

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Suspense } from 'react';
-import ArticleDeleteButton from '@/components/ArticleDeleteButton';
+// import ArticleDeleteButton from '@/components/ArticleDeleteButton';
+import ArticleDeleteRouteButton from '@/components/ArticleDeleteRouteButton';
 import Loading from '@/components/Loading';
 import { URL_NOT_FOUND } from '@/constants/constants';
 import type { Post } from '@/types/post';
@@ -54,7 +55,10 @@ async function ArticleDetailPageContent({ params }: ArticleDetailPageProps) {
         <p>{article.content}</p>
       </div>
       <div className="border-t border-gray-300 w-full pt-4">
-        <ArticleDeleteButton id={id} />
+        {/* json-server */}
+        {/* <ArticleDeleteButton id={id} /> */}
+        {/* supabase */}
+        <ArticleDeleteRouteButton id={id} />
       </div>
     </div>
   );

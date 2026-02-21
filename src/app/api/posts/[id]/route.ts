@@ -26,7 +26,6 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   try {
     const { id } = await params;
     const body = await req.json();
-    console.log(body);
     const validation = articleFormSchema.safeParse(body);
 
     if (!validation.success) {
@@ -55,4 +54,15 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   } catch (_err) {
     return NextResponse.json({ error: '予期せぬエラーが発生しました' }, { status: 500 });
   }
+}
+
+export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
+  const { error } = await supabase.from('posts').delete().eq('id', id);
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+  return NextResponse.json({ success: true });
 }

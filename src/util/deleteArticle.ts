@@ -1,4 +1,7 @@
+'use server';
+
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import { DELETE_ARTICLE_ERROR, URL_NOT_FOUND } from '@/constants/constants';
 
 interface State {
@@ -17,8 +20,8 @@ export const deleteArticle = async (id: string, _prevState: State) => {
       return { error: DELETE_ARTICLE_ERROR };
     }
     revalidatePath('/');
-    return { error: null };
   } catch (_err) {
     return { error: DELETE_ARTICLE_ERROR };
   }
+  redirect('/');
 };

@@ -1,12 +1,6 @@
 {
   "articles": [
     {
-      "id": "1",
-      "title": "Next.js 13をUdemyで学ぶ",
-      "content": "Udemyの教材でNext.js 13を学んでいます。",
-      "createdAt": "2026/02/19"
-    },
-    {
       "id": "2",
       "title": "What is Lorem Ipsum?",
       "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -14,21 +8,9 @@
     },
     {
       "id": "3",
-      "title": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
-      "content": "Nam tincidunt sollicitudin mauris vel lacinia. Mauris consectetur ipsum vel lorem fermentum, nec feugiat massa rutrum. Nullam tristique, sem sit amet suscipit lobortis, est nisl tincidunt tortor, ut efficitur mi velit a mi. Donec felis metus, tincidunt nec varius vel, iaculis at ante. Donec enim felis, elementum vel enim at, lobortis bibendum neque. Phasellus justo purus, sagittis ut diam quis, mattis dapibus lacus. Maecenas vehicula dolor sapien, in aliquet ipsum ultrices ac. Duis ultricies sed enim et mollis. Donec at sollicitudin sem.",
-      "createdAt": "2026/02/18"
-    },
-    {
-      "id": "3",
       "title": "テスト",
       "content": "テストです。",
       "createdAt": "2026/02/20"
-    },
-    {
-      "id": "edf43c01-3276-424c-934f-544152644f31",
-      "title": "test1",
-      "content": "test1test1",
-      "createdAt": "2026/02/21"
     }
   ]
 }

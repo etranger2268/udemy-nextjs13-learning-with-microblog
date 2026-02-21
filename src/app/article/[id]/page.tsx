@@ -34,8 +34,8 @@ async function ArticleDetailPageContent({ params }: ArticleDetailPageProps) {
       <div className="w-full">
         <p>{article.content}</p>
       </div>
-      <div>
-        <ArticleDeleteButton _id={id} />
+      <div className="border-t border-gray-300 w-full pt-4">
+        <ArticleDeleteButton id={id} />
       </div>
     </div>
   );
